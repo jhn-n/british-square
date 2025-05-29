@@ -20,11 +20,6 @@ board *new_board();
 
 void british_square() {
     board *b = new_board();
-    make_move(b, 5);
-    make_move(b, 0);
-    make_move(b, 10);
-    make_move(b, 15);
-    make_move(b, 3);
 
     print_board(b);
     free(b);
