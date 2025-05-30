@@ -1,12 +1,15 @@
+"use strict"
 console.time("British Square");
 
 const squares = Array.from(Array(16).keys());
 let blue = Array(16).fill(false);
 let red = Array(16).fill(false);
 let blueToMove = true;
-let moves = [3, 7];
+
+let moves = [];
 moves.forEach(m => makeMove(m));
 analyseBoard();
+
 console.timeEnd("British Square");
 
 
@@ -33,8 +36,7 @@ function validMove(m) {
 }
 
 function scoreAfterPass() {
-    let score = 0;
-    if (!blueToMove) { score = -1; }
+    let score = blueToMove ? 0 : -1;
     blueToMove = !blueToMove;
     score -= squares.filter(m => validMove(m)).length;
     blueToMove = !blueToMove;
@@ -57,8 +59,8 @@ function analysePosition() {
 function analyseBoard() {
     let i, j, score, s;
     let best = -100;
-    c = blueToMove ? 'o' : 'x';
-    d = blueToMove ? 'x' : 'o';
+    const c = blueToMove ? 'o' : 'x';
+    const d = blueToMove ? 'x' : 'o';
 
     console.log("Board\tCurr\tOpp\tAnalysis");
     for (i = 0; i < 16; i += 4) {
